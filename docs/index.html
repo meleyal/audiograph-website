@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>AudioGraph • API Docs</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="../styles.css" />
+    </head>
+    <body class="font-inter text-black bg-white">
+        <nav class="border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <a href="/" class="text-xl font-semibold tracking-tight">AudioGraph</a>
+                    </div>
+                    <div class="flex items-center space-x-8">
+                        <a href="/docs" class="hover:underline">Docs</a>
+                        <a
+                            href="https://forms.gle/vsi4ciNb7rmrdaGT6"
+                            target="_blank"
+                            class="bg-green-600 text-white px-4 py-2 hover:bg-green-700"
+                            >Sign Up</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex min-h-screen">
+                <!-- Sidebar -->
+                <aside
+                    class="sticky top-0 h-screen w-64 border-r border-gray-200 pt-8 pb-4 flex-shrink-0 overflow-y-auto"
+                >
+                    <nav class="pr-4">
+                        <div class="space-y-8">
+                            <div>
+                                <h5 class="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">
+                                    Getting Started
+                                </h5>
+                                <ul class="space-y-2">
+                                    <li>
+                                        <a href="#introduction" class="hover:underline">Introduction</a>
+                                    </li>
+                                    <li>
+                                        <a href="#authentication" class="hover:underline">Authentication</a>
+                                    </li>
+                                    <li><a href="#errors" class="hover:underline">Errors</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">
+                                    Endpoints
+                                </h5>
+                                <ul class="space-y-2">
+                                    <li>
+                                        <a href="#transcoding" class="hover:underline">Transcoding</a>
+                                    </li>
+                                    <li><a href="#tagging" class="hover:underline">Tagging</a></li>
+                                    <li>
+                                        <a href="#source-separation" class="hover:underline">Source Separation</a>
+                                    </li>
+                                    <li>
+                                        <a href="#transcription" class="hover:underline">Transcription</a>
+                                    </li>
+                                    <li>
+                                        <a href="#genre" class="hover:underline">Genre Classification</a>
+                                    </li>
+                                    <li><a href="#bpm" class="hover:underline">BPM Detection</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">Guides</h5>
+                                <ul class="space-y-2">
+                                    <li><a href="#webhooks" class="hover:underline">Webhooks</a></li>
+                                    <li><a href="#polling" class="hover:underline">Polling</a></li>
+                                    <li><a href="#assets" class="hover:underline">Assets</a></li>
+                                    <li><a href="#rate-limits" class="hover:underline">Rate Limits</a></li>
+                                    <li><a href="#file-formats" class="hover:underline">File Formats</a></li>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </aside>
+
+                <!-- Main content -->
+                <main class="flex-1">
+                    <div class="pl-12 py-8">
+                        <section id="introduction" class="mb-16">
+                            <h1 class="text-4xl font-bold tracking-tight mb-6">Introduction</h1>
+                            <p class="text-lg mb-6">
+                                Welcome to the AudioGraph API documentation. Our API provides comprehensive audio
+                                processing capabilities through simple REST endpoints.
+                            </p>
+                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
+                                <pre><code>curl -X POST \
+  'https://api.audiograph.org/v1/transcribe' \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'file=@audio.mp3' \
+  -F 'webhook_url=https://example.com/webhook'</code></pre>
+                            </div>
+                        </section>
+
+                        <section id="authentication" class="mb-16">
+                            <h2 class="text-3xl font-bold tracking-tight mb-6">Authentication</h2>
+                            <p class="text-lg mb-6">
+                                All API requests require authentication using a Bearer token in the Authorization
+                                header.
+                            </p>
+                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg">
+                                <pre><code>Authorization: Bearer YOUR_API_KEY</code></pre>
+                            </div>
+                        </section>
+
+                        <section id="errors" class="mb-16">
+                            <h2 class="text-3xl font-bold tracking-tight mb-6">Errors</h2>
+                            <div class="overflow-x-auto">
+                                <table class="w-full border-collapse">
+                                    <thead>
+                                        <tr class="border-b border-gray-200">
+                                            <th class="py-4 text-left">Code</th>
+                                            <th class="py-4 text-left">Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-b border-gray-200">
+                                            <td class="py-4">400</td>
+                                            <td class="py-4">Bad Request - Invalid parameters</td>
+                                        </tr>
+                                        <tr class="border-b border-gray-200">
+                                            <td class="py-4">401</td>
+                                            <td class="py-4">Unauthorized - Invalid API key</td>
+                                        </tr>
+                                        <tr class="border-b border-gray-200">
+                                            <td class="py-4">429</td>
+                                            <td class="py-4">Too Many Requests - Rate limit exceeded</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <section id="transcoding" class="mb-16">
+                            <h2 class="text-3xl font-bold tracking-tight mb-6">Transcoding</h2>
+                            <p class="text-lg mb-6">
+                                Convert audio files between different formats with optimal settings.
+                            </p>
+                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
+                                <pre><code>curl -X POST \
+  'https://api.audiograph.org/v1/transcode' \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'file=@audio.wav' \
+  -F 'format=mp3' \
+  -F 'quality=320' \
+  -F 'webhook_url=https://example.com/webhook'</code></pre>
+                            </div>
+                        </section>
+
+                        <section id="tagging" class="mb-16">
+                            <h2 class="text-3xl font-bold tracking-tight mb-6">Tagging</h2>
+                            <p class="text-lg mb-6">
+                                Automatically identify and tag audio content with high accuracy. Tags include genres,
+                                moods, instruments, and other audio characteristics.
+                            </p>
+                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
+                                <pre><code>curl -X POST \
+  'https://api.audiograph.org/v1/tag' \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'file=@audio.mp3' \
+  -F 'include_confidence=true' \
+  -F 'webhook_url=https://example.com/webhook'</code></pre>
+                            </div>
+                        </section>
+
+                        <section id="source-separation" class="mb-16">
+                            <h2 class="text-3xl font-bold tracking-tight mb-6">Source Separation</h2>
+                            <p class="text-lg mb-6">
+                                Split audio into individual stems including vocals, drums, bass, and other instruments.
+                                Perfect for remixing and audio analysis.
+                            </p>
+                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
+                                <pre><code>curl -X POST \
+  'https://api.audiograph.org/v1/separate' \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'file=@song.mp3' \
+  -F 'stems[]=vocals' \
+  -F 'stems[]=drums' \
+  -F 'stems[]=bass' \
+  -F 'stems[]=other' \
+  -F 'webhook_url=https://example.com/webhook'</code></pre>
+                            </div>
+                        </section>
+
+                        <section id="transcription" class="mb-16">
+                            <h2 class="text-3xl font-bold tracking-tight mb-6">Transcription</h2>
+                            <p class="text-lg mb-6">
+                                Convert speech to text with support for multiple languages, speaker diarization, and
+                                punctuation. Ideal for podcasts, interviews, and voice notes.
+                            </p>
+                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
+                                <pre><code>curl -X POST \
+  'https://api.audiograph.org/v1/transcribe' \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'file=@interview.mp3' \
+  -F 'language=en' \
+  -F 'diarization=true' \
+  -F 'webhook_url=https://example.com/webhook'</code></pre>
+                            </div>
+                        </section>
+
+                        <section id="genre" class="mb-16">
+                            <h2 class="text-3xl font-bold tracking-tight mb-6">Genre Classification</h2>
+                            <p class="text-lg mb-6">
+                                Identify musical genres and subgenres with high accuracy. Our model recognizes over 500
+                                different genres and styles.
+                            </p>
+                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
+                                <pre><code>curl -X POST \
+  'https://api.audiograph.org/v1/classify/genre' \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'file=@track.mp3' \
+  -F 'include_subgenres=true' \
+  -F 'webhook_url=https://example.com/webhook'</code></pre>
+                            </div>
+                        </section>
+
+                        <section id="bpm" class="mb-16">
+                            <h2 class="text-3xl font-bold tracking-tight mb-6">BPM Detection</h2>
+                            <p class="text-lg mb-6">
+                                Accurate tempo detection and beat tracking for any musical content. Returns BPM, beat
+                                positions, and rhythm confidence scores.
+                            </p>
+                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
+                                <pre><code>curl -X POST \
+  'https://api.audiograph.org/v1/detect/bpm' \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'file=@track.mp3' \
+  -F 'return_beats=true' \
+  -F 'webhook_url=https://example.com/webhook'</code></pre>
+                            </div>
+                        </section>
+
+                        <section id="webhooks" class="mb-16">
+                            <h2 class="text-3xl font-bold tracking-tight mb-6">Webhooks</h2>
+                            <p class="text-lg mb-6">
+                                Get notified when your audio processing is complete through webhooks. We'll send a POST
+                                request to your specified URL with the results.
+                            </p>
+                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
+                                <pre><code>{
+  "id": "job_123",
+  "status": "completed",
+  "result": {
+    "bpm": 128,
+    "confidence": 0.95,
+    "beat_positions": [0.5, 1.0, 1.5]
+  }
+}</code></pre>
+                            </div>
+                        </section>
+
+                        <section id="polling" class="mb-16">
+                            <h2 class="text-3xl font-bold tracking-tight mb-6">Polling</h2>
+                            <p class="text-lg mb-6">
+                                If you prefer not to use webhooks, you can poll the job status endpoint to check when
+                                processing is complete. Each job returns a unique ID that you can use to check its
+                                status.
+                            </p>
+                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
+                                <pre><code>curl -X GET \
+  'https://api.audiograph.org/v1/jobs/job_123' \
+  -H 'Authorization: Bearer YOUR_API_KEY'</code></pre>
+                            </div>
+                            <p class="text-lg mb-6">
+                                The response will include the job's current status and results if available:
+                            </p>
+                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
+                                <pre><code>{
+  "id": "job_123",
+  "status": "completed", // or "processing", "failed"
+  "created_at": "2025-01-01T12:00:00Z",
+  "completed_at": "2025-01-01T12:01:30Z",
+  "result": {
+    // endpoint-specific results here
+  },
+  "error": null
+}</code></pre>
+                            </div>
+                        </section>
+
+                        <section id="assets" class="mb-16">
+                            <h2 class="text-3xl font-bold tracking-tight mb-6">Assets</h2>
+                            <p class="text-lg mb-6">
+                                Many endpoints return signed URLs to processed assets in their response. These assets
+                                are stored securely and the URLs expire after 30 days.
+                            </p>
+                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
+                                <pre><code>{
+  "id": "job_123",
+  "status": "completed",
+  "result": {
+    "stems": {
+      "vocals": "https://assets.audiograph.org/stems/vocals_j4k2l3.mp3?signature=abc123...",
+      "drums": "https://assets.audiograph.org/stems/drums_h8k2m4.mp3?signature=def456...",
+      "bass": "https://assets.audiograph.org/stems/bass_n9p4q7.mp3?signature=ghi789..."
+    }
+  }
+}</code></pre>
+                            </div>
+                        </section>
+
+                        <section id="rate-limits" class="mb-16">
+                            <h2 class="text-3xl font-bold tracking-tight mb-6">Rate Limits</h2>
+                            <p class="text-lg mb-6">
+                                Standard accounts are limited to 60 requests per minute. Enterprise accounts receive
+                                higher limits based on their needs.
+                            </p>
+                            <div class="overflow-x-auto">
+                                <table class="w-full border-collapse">
+                                    <thead>
+                                        <tr class="border-b border-gray-200">
+                                            <th class="py-4 text-left">Plan</th>
+                                            <th class="py-4 text-left">Requests/minute</th>
+                                            <th class="py-4 text-left">File Size Limit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-b border-gray-200">
+                                            <td class="py-4">Standard</td>
+                                            <td class="py-4">60</td>
+                                            <td class="py-4">500MB</td>
+                                        </tr>
+                                        <tr class="border-b border-gray-200">
+                                            <td class="py-4">Enterprise</td>
+                                            <td class="py-4">Custom</td>
+                                            <td class="py-4">2GB</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <section id="file-formats" class="mb-16">
+                            <h2 class="text-3xl font-bold tracking-tight mb-6">File Formats</h2>
+                            <p class="text-lg mb-6">
+                                We support a wide range of audio formats for both input and output. All responses
+                                maintain the original audio quality.
+                            </p>
+                            <div class="overflow-x-auto">
+                                <table class="w-full border-collapse">
+                                    <thead>
+                                        <tr class="border-b border-gray-200">
+                                            <th class="py-4 text-left">Format</th>
+                                            <th class="py-4 text-left">Input</th>
+                                            <th class="py-4 text-left">Output</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-b border-gray-200">
+                                            <td class="py-4">WAV</td>
+                                            <td class="py-4">✓</td>
+                                            <td class="py-4">✓</td>
+                                        </tr>
+                                        <tr class="border-b border-gray-200">
+                                            <td class="py-4">MP3</td>
+                                            <td class="py-4">✓</td>
+                                            <td class="py-4">✓</td>
+                                        </tr>
+                                        <tr class="border-b border-gray-200">
+                                            <td class="py-4">FLAC</td>
+                                            <td class="py-4">✓</td>
+                                            <td class="py-4">✓</td>
+                                        </tr>
+                                        <tr class="border-b border-gray-200">
+                                            <td class="py-4">AAC</td>
+                                            <td class="py-4">✓</td>
+                                            <td class="py-4">✓</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="border-t border-gray-200 py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <p>&copy; 2025 AudioGraph. All rights reserved.</p>
+            </div>
+        </footer>
+    </body>
+</html>

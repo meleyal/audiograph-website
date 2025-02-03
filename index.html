@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="icon" href="favicon.ico" />
+        <title>AudioGraph • Comprehensive Audio Processing API</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body class="font-inter text-black bg-white">
+        <nav class="border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <span class="text-xl font-semibold tracking-tight">AudioGraph</span>
+                    </div>
+                    <div class="flex items-center space-x-8">
+                        <a href="/docs" class="hover:underline">Docs</a>
+                        <a
+                            href="https://forms.gle/vsi4ciNb7rmrdaGT6"
+                            target="_blank"
+                            class="bg-green-600 text-white px-4 py-2 hover:bg-green-700"
+                            >Sign Up</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <!-- Hero -->
+            <header class="pt-16 sm:pt-16 pb-12 sm:pb-16 border-b border-gray-200">
+                <div class="container mx-auto px-8">
+                    <div class="max-w-5xl mx-auto text-center">
+                        <span
+                            class="inline-block font-semibold text-xs sm:text-sm mb-6 sm:mb-8 tracking-wide uppercase"
+                        >
+                            A comprehensive API for audio processing at scale
+                        </span>
+                        <h1 class="text-5xl sm:text-8xl font-extrabold mb-6 sm:mb-8 leading-[1.1] tracking-tight">
+                            Audio Processing, Simplified
+                        </h1>
+                        <p class="text-xl sm:text-2xl text-gray-700 mb-8 sm:mb-12 leading-relaxed max-w-3xl mx-auto">
+                            Process, analyze, and transform audio with a single API call.
+                        </p>
+                        <div class="mb-12 max-w-xl mx-auto">
+                            <pre
+                                class="bg-gray-800 text-gray-100 p-6 rounded-lg text-sm overflow-x-auto text-left"
+                            ><code>curl -X POST \
+  'https://api.audiograph.org/v1/transcribe' \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'file=@audio.mp3' \
+  -F 'webhook_url=https://example.com/webhook'</code></pre>
+                        </div>
+                        <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
+                            <a
+                                target="_blank"
+                                href="https://forms.gle/vsi4ciNb7rmrdaGT6"
+                                class="bg-green-600 text-white px-4 sm:px-8 py-2 sm:py-3 hover:bg-green-700 font-medium flex items-center justify-center gap-2 group text-base sm:text-lg"
+                            >
+                                Get API Key
+                            </a>
+                            <a
+                                href="/docs"
+                                class="bg-gray-100 text-gray-600 px-4 sm:px-8 py-2 sm:py-3 hover:bg-gray-200 font-medium flex items-center justify-center gap-2 group text-base sm:text-lg"
+                            >
+                                View Docs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Endpoints -->
+            <section class="py-20 border-b border-gray-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl font-bold tracking-tight mb-12">Endpoints</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <a href="/docs#transcoding" class="border border-gray-200 p-6 group">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold tracking-tight group-hover:underline">Transcoding</h3>
+                            </div>
+                            <p>Convert between audio formats with optimal settings</p>
+                        </a>
+                        <a href="/docs#tagging" class="border border-gray-200 p-6 group">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold tracking-tight group-hover:underline">Tagging</h3>
+                            </div>
+                            <p>Automatically identify and tag audio content with high accuracy</p>
+                        </a>
+                        <a href="/docs#source-separation" class="border border-gray-200 p-6 group">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold tracking-tight group-hover:underline">
+                                    Source Separation
+                                </h3>
+                            </div>
+                            <p>Split audio into individual stems: vocals, drums, bass, and more</p>
+                        </a>
+                        <a href="/docs#transcription" class="border border-gray-200 p-6 group">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold tracking-tight group-hover:underline">Transcription</h3>
+                            </div>
+                            <p>Convert speech to text with support for multiple languages</p>
+                        </a>
+                        <a href="/docs#genre" class="border border-gray-200 p-6 group">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold tracking-tight group-hover:underline">
+                                    Genre Classification
+                                </h3>
+                            </div>
+                            <p>Identify musical genres and subgenres automatically</p>
+                        </a>
+                        <a href="/docs#bpm" class="border border-gray-200 p-6 group">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold tracking-tight group-hover:underline">BPM Detection</h3>
+                            </div>
+                            <p>Accurate tempo detection and beat tracking</p>
+                        </a>
+                        <a href="/docs#enhancement" class="border border-gray-200 p-6 group">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold tracking-tight group-hover:underline">
+                                    Audio Enhancement
+                                </h3>
+                            </div>
+                            <p>Noise reduction, normalization, and quality improvement</p>
+                        </a>
+                        <a href="/docs#mood" class="border border-gray-200 p-6 group">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold tracking-tight group-hover:underline">Mood Analysis</h3>
+                            </div>
+                            <p>Detect emotional characteristics in music</p>
+                        </a>
+                        <a href="/docs#melody" class="border border-gray-200 p-6 group">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold tracking-tight group-hover:underline">
+                                    Melody Extraction
+                                </h3>
+                            </div>
+                            <p>Extract and transcribe the main melody from any song</p>
+                        </a>
+                        <a href="/docs#diarization" class="border border-gray-200 p-6 group">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold tracking-tight group-hover:underline">
+                                    Speaker Diarization
+                                </h3>
+                            </div>
+                            <p>Identify and separate different speakers in conversations</p>
+                        </a>
+                        <a href="/docs#fingerprinting" class="border border-gray-200 p-6 group">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold tracking-tight group-hover:underline">
+                                    Audio Fingerprinting
+                                </h3>
+                            </div>
+                            <p>Generate unique fingerprints for audio identification</p>
+                        </a>
+                        <a href="/docs#normalization" class="border border-gray-200 p-6 group">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold tracking-tight group-hover:underline">
+                                    Loudness Normalization
+                                </h3>
+                            </div>
+                            <p>Normalize audio to broadcast standards (LUFS/EBU)</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Enterprise -->
+            <section class="py-20 border-b border-gray-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl font-bold tracking-tight mb-12">Enterprise</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div>
+                            <h3 class="text-xl font-bold tracking-tight mb-4">99% Uptime</h3>
+                            <p>Built on reliable infrastructure with global redundancy</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold tracking-tight mb-4">Secure Storage</h3>
+                            <p>Optional long-term storage with encryption at rest</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold tracking-tight mb-4">Batch Processing</h3>
+                            <p>Process thousands of files in parallel via API</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold tracking-tight mb-4">Priority Processing</h3>
+                            <p>Dedicated resources for faster processing times</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing -->
+            <section class="py-20 border-b border-gray-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="mb-12">
+                        <h2 class="text-3xl font-bold tracking-tight mb-4">Pricing</h2>
+                        <div class="flex items-center gap-4">
+                            <p class="text-xl">Transparent, predictable pricing, only pay for what you use.</p>
+                            <span class="inline-flex items-center px-3 py-1 text-sm font-medium bg-yellow-200">
+                                Beta pricing subject to change
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse">
+                            <thead>
+                                <tr class="border-b border-gray-200">
+                                    <th class="py-4 text-left">Endpoint</th>
+                                    <th class="py-4 text-left">Price per Minute</th>
+                                    <th class="py-4 text-left">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-4">Transcoding</td>
+                                    <td class="py-4">$0.01</td>
+                                    <td class="py-4">Format conversion with optimal settings</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-4">Tagging</td>
+                                    <td class="py-4">$0.01</td>
+                                    <td class="py-4">Genre, mood, instruments</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-4">Source Separation</td>
+                                    <td class="py-4">$0.05</td>
+                                    <td class="py-4">Vocals, drums, bass, other</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-4">Transcription</td>
+                                    <td class="py-4">$0.02</td>
+                                    <td class="py-4">Speech-to-text with punctuation</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-4">Genre Classification</td>
+                                    <td class="py-4">$0.01</td>
+                                    <td class="py-4">Including subgenres</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-4">BPM Detection</td>
+                                    <td class="py-4">$0.01</td>
+                                    <td class="py-4">Tempo and beat tracking</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-4">Audio Enhancement</td>
+                                    <td class="py-4">$0.03</td>
+                                    <td class="py-4">Noise reduction and normalization</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-4">Mood Analysis</td>
+                                    <td class="py-4">$0.02</td>
+                                    <td class="py-4">Emotional characteristics detection</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-4">Melody Extraction</td>
+                                    <td class="py-4">$0.03</td>
+                                    <td class="py-4">Main melody transcription</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-4">Speaker Diarization</td>
+                                    <td class="py-4">$0.03</td>
+                                    <td class="py-4">Speaker identification and separation</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-4">Audio Fingerprinting</td>
+                                    <td class="py-4">$0.01</td>
+                                    <td class="py-4">Unique audio identification</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4">Loudness Normalization</td>
+                                    <td class="py-4">$0.02</td>
+                                    <td class="py-4">LUFS/EBU broadcast standards</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mt-8 space-y-4 text-sm text-gray-600">
+                        <p>All prices are per minute of audio, rounded up to the nearest minute</p>
+                        <p>Supported formats: WAV, MP3, FLAC, AAC (max 500MB per file)</p>
+                        <p>Volume discounts available for enterprise customers</p>
+                    </div>
+                </div>
+            </section>
+            <!-- FAQ -->
+            <section class="py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl font-bold tracking-tight mb-12">FAQ</h2>
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <div>
+                            <h3 class="text-xl font-bold tracking-tight mb-4">What audio formats do you support?</h3>
+                            <p>
+                                We support WAV, MP3, FLAC, and AAC formats. Maximum file size is 500MB. All responses
+                                are returned in the same format as the input file unless specified otherwise.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold tracking-tight mb-4">
+                                How is audio processing time calculated?
+                            </h3>
+                            <p>
+                                Processing time is based on the duration of the input audio file, rounded up to the
+                                nearest minute. For example, a 2:30 minute file will be charged as 3 minutes.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold tracking-tight mb-4">
+                                What happens to my audio files after processing?
+                            </h3>
+                            <p>
+                                Files are automatically deleted after processing. We never store audio content unless
+                                explicitly requested. All processing is done in memory and follows strict privacy
+                                guidelines.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold tracking-tight mb-4">What's your uptime guarantee?</h3>
+                            <p>
+                                We maintain 99% uptime, backed by a financially guaranteed SLA for enterprise customers.
+                                Our infrastructure is distributed across multiple regions for redundancy.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold tracking-tight mb-4">What are your rate limits?</h3>
+                            <p>
+                                Standard accounts can process up to 60 concurrent requests. Enterprise accounts receive
+                                higher limits and can request custom configurations based on their needs.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold tracking-tight mb-4">
+                                How do I get notified when processing is complete?
+                            </h3>
+                            <p>
+                                You can either provide a webhook URL to receive callbacks, or use long polling to check
+                                the status. Both methods notify you of completion or failure, with automatic retries
+                                configurable.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="border-t border-gray-200 py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <p>&copy; 2025 AudioGraph. All rights reserved.</p>
+            </div>
+        </footer>
+    </body>
+</html>
