@@ -81,7 +81,7 @@
                                     <li><a href="#assets" class="hover:underline">Assets</a></li>
                                     <li><a href="#rate-limits" class="hover:underline">Rate Limits</a></li>
                                     <li><a href="#file-formats" class="hover:underline">File Formats</a></li>
-                                    </li>
+                                    <li><a href="#testing" class="hover:underline">Testing</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -390,6 +390,42 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
+                        </section>
+
+                        <section id="testing" class="mb-16">
+                            <h2 class="text-3xl font-bold tracking-tight mb-6">Testing</h2>
+                            <p class="text-lg mb-6">
+                                Use your test API key to safely test your integration. Test keys return example
+                                responses without performing any actual processing, and you won't be billed for these
+                                requests.
+                            </p>
+                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
+                                <pre><code>curl -X POST \
+  'https://api.audiograph.org/v1/transcribe' \
+  -H 'Authorization: Bearer test_YOUR_API_KEY' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'file=@audio.mp3'</code></pre>
+                            </div>
+                            <p class="text-lg mb-6">
+                                Test API keys start with <code class="bg-gray-100 px-2 py-1 rounded">test_</code>.
+                                You'll receive standardized example responses that match the structure of production
+                                responses:
+                            </p>
+                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
+                                <pre><code>{
+  "id": "job_test_123",
+  "status": "completed",
+  "result": {
+    "text": "This is an example transcription response.",
+    "confidence": 0.95,
+    "language": "en",
+    "speakers": [
+      {"id": 1, "start": 0.0, "end": 2.5},
+      {"id": 2, "start": 2.8, "end": 5.0}
+    ]
+  }
+}</code></pre>
                             </div>
                         </section>
                     </div>
