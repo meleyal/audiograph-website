@@ -59,17 +59,6 @@
                                     <li>
                                         <a href="#transcoding" class="hover:underline">Transcoding</a>
                                     </li>
-                                    <li><a href="#tagging" class="hover:underline">Tagging</a></li>
-                                    <li>
-                                        <a href="#source-separation" class="hover:underline">Source Separation</a>
-                                    </li>
-                                    <li>
-                                        <a href="#transcription" class="hover:underline">Transcription</a>
-                                    </li>
-                                    <li>
-                                        <a href="#genre" class="hover:underline">Genre Classification</a>
-                                    </li>
-                                    <li><a href="#bpm" class="hover:underline">BPM Detection</a></li>
                                 </ul>
                             </div>
                             <div>
@@ -81,10 +70,6 @@
                                     <li><a href="#rate-limits" class="hover:underline">Rate Limits</a></li>
                                     <li><a href="#file-formats" class="hover:underline">File Formats</a></li>
                                     <li><a href="#testing" class="hover:underline">Testing</a></li>
-                                    <li><a href="#batch-processing" class="hover:underline">Batch Processing</a></li>
-                                    <li>
-                                        <a href="#real-time" class="hover:underline">Real-time Processing (Beta)</a>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -162,95 +147,6 @@
   -F 'file=@audio.wav' \
   -F 'format=mp3' \
   -F 'quality=320' \
-  -F 'webhook_url=https://example.com/webhook'</code></pre>
-                            </div>
-                        </section>
-
-                        <section id="tagging" class="mb-16">
-                            <h2 class="text-3xl font-bold tracking-tight mb-6">Tagging</h2>
-                            <p class="text-lg mb-6">
-                                Automatically identify and tag audio content with high accuracy. Tags include genres,
-                                moods, instruments, and other audio characteristics.
-                            </p>
-                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
-                                <pre><code>curl -X POST \
-  'https://api.audiograph.org/v1/tag' \
-  -H 'Authorization: Bearer YOUR_API_KEY' \
-  -H 'Content-Type: multipart/form-data' \
-  -F 'file=@audio.mp3' \
-  -F 'include_confidence=true' \
-  -F 'webhook_url=https://example.com/webhook'</code></pre>
-                            </div>
-                        </section>
-
-                        <section id="source-separation" class="mb-16">
-                            <h2 class="text-3xl font-bold tracking-tight mb-6">Source Separation</h2>
-                            <p class="text-lg mb-6">
-                                Split audio into individual stems including vocals, drums, bass, and other instruments.
-                                Perfect for remixing and audio analysis.
-                            </p>
-                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
-                                <pre><code>curl -X POST \
-  'https://api.audiograph.org/v1/separate' \
-  -H 'Authorization: Bearer YOUR_API_KEY' \
-  -H 'Content-Type: multipart/form-data' \
-  -F 'file=@song.mp3' \
-  -F 'stems[]=vocals' \
-  -F 'stems[]=drums' \
-  -F 'stems[]=bass' \
-  -F 'stems[]=other' \
-  -F 'webhook_url=https://example.com/webhook'</code></pre>
-                            </div>
-                        </section>
-
-                        <section id="transcription" class="mb-16">
-                            <h2 class="text-3xl font-bold tracking-tight mb-6">Transcription</h2>
-                            <p class="text-lg mb-6">
-                                Convert speech to text with support for multiple languages, speaker diarization, and
-                                punctuation. Ideal for podcasts, interviews, and voice notes.
-                            </p>
-                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
-                                <pre><code>curl -X POST \
-  'https://api.audiograph.org/v1/transcribe' \
-  -H 'Authorization: Bearer YOUR_API_KEY' \
-  -H 'Content-Type: multipart/form-data' \
-  -F 'file=@interview.mp3' \
-  -F 'language=en' \
-  -F 'diarization=true' \
-  -F 'webhook_url=https://example.com/webhook'</code></pre>
-                            </div>
-                        </section>
-
-                        <section id="genre" class="mb-16">
-                            <h2 class="text-3xl font-bold tracking-tight mb-6">Genre Classification</h2>
-                            <p class="text-lg mb-6">
-                                Identify musical genres and subgenres with high accuracy. Our model recognizes over 500
-                                different genres and styles.
-                            </p>
-                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
-                                <pre><code>curl -X POST \
-  'https://api.audiograph.org/v1/classify/genre' \
-  -H 'Authorization: Bearer YOUR_API_KEY' \
-  -H 'Content-Type: multipart/form-data' \
-  -F 'file=@track.mp3' \
-  -F 'include_subgenres=true' \
-  -F 'webhook_url=https://example.com/webhook'</code></pre>
-                            </div>
-                        </section>
-
-                        <section id="bpm" class="mb-16">
-                            <h2 class="text-3xl font-bold tracking-tight mb-6">BPM Detection</h2>
-                            <p class="text-lg mb-6">
-                                Accurate tempo detection and beat tracking for any musical content. Returns BPM, beat
-                                positions, and rhythm confidence scores.
-                            </p>
-                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
-                                <pre><code>curl -X POST \
-  'https://api.audiograph.org/v1/detect/bpm' \
-  -H 'Authorization: Bearer YOUR_API_KEY' \
-  -H 'Content-Type: multipart/form-data' \
-  -F 'file=@track.mp3' \
-  -F 'return_beats=true' \
   -F 'webhook_url=https://example.com/webhook'</code></pre>
                             </div>
                         </section>
@@ -429,62 +325,6 @@
     ]
   }
 }</code></pre>
-                            </div>
-                        </section>
-
-                        <section id="batch-processing" class="mb-16">
-                            <h2 class="text-3xl font-bold tracking-tight mb-6">Batch Processing</h2>
-                            <p class="text-lg mb-6">
-                                Batch processing allows you to process multiple audio files at once. This is useful for
-                                large-scale projects or when you need to process multiple files simultaneously.
-                            </p>
-                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
-                                <pre><code>curl -X POST \
-  'https://api.audiograph.org/v1/transcribe' \
-  -H 'Authorization: Bearer YOUR_API_KEY' \
-  -H 'Content-Type: multipart/form-data' \
-  -F 'file=@audio1.mp3' \
-  -F 'file=@audio2.mp3' \
-  -F 'file=@audio3.mp3' \
-  -F 'webhook_url=https://example.com/webhook'</code></pre>
-                            </div>
-                        </section>
-
-                        <section id="real-time" class="mb-16">
-                            <h2 class="text-3xl font-bold tracking-tight mb-6">Real-time Processing (Beta)</h2>
-                            <p class="text-lg mb-6">
-                                Process audio streams in real-time using our WebSocket API or WebRTC. Perfect for live
-                                events, streaming applications, and interactive experiences. WebRTC offers lower latency
-                                and better quality for browser-based applications.
-                            </p>
-                            <h3 class="text-2xl font-bold tracking-tight mb-4">WebSocket</h3>
-                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
-                                <pre><code>const socket = new WebSocket(
-  'wss://api.audiograph.org/v1/realtime',
-  ['Bearer', 'YOUR_API_KEY']
-);</code></pre>
-                            </div>
-
-                            <h3 class="text-2xl font-bold tracking-tight mb-4">WebRTC</h3>
-                            <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
-                                <pre><code>const response = await fetch('https://api.audiograph.org/v1/realtime', {
-    method: 'POST',
-    headers: {
-      'Authorization': 'Bearer YOUR_API_KEY',
-      'Content-Type': 'application/json'
-    },
-    body: offer.sdp,
-});</code></pre>
-                            </div>
-                            <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                                <p class="font-semibold mb-2">Want to try real-time processing?</p>
-                                <p>
-                                    Real-time processing is currently in beta. Contact our team at
-                                    <a href="mailto:support@audiograph.org" class="text-green-600 hover:underline">
-                                        support@audiograph.org
-                                    </a>
-                                    to request access.
-                                </p>
                             </div>
                         </section>
                     </div>
